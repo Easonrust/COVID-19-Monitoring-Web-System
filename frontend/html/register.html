@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>注册页面</title>
+
+    <link rel="stylesheet" type="text/css" href="../css/login.css" />
+    <script type="text/javascript" src="../js/register.js"></script>
+</head>
+
+<body>
+    <div id="frame">
+
+        <p id="image_logo"><img width="80px" src="../image/logo.png"></p>
+
+
+
+
+
+        <form method="post" action="../js/register.js">
+
+            <p><label class="label_input">用户名</label><input type="text" id="username" class="text_field" /></p>
+            <p><label class="label_input">密码</label><input type="text" id="password" class="text_field" /></p>
+
+            <div id="control">
+                <input type="button" id="btn" value="注册" οnclick="register();" />
+            </div>
+        </form>
+        <br>
+        <p>已有账号？<a id="toLogin" href="login.html">请登录</a></p>
+
+
+    </div>
+
+</body>
+
+</html>

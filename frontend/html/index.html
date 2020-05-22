@@ -4,8 +4,11 @@
 <head>
     <meta charset="utf-8">
     <title>Online Store</title>
-    <link rel="stylesheet" type="text/css" href="index.css">
-    <script type="text/javascript" src="index.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/index.css">
+    <script src="../js/cookie.js" type="text/javascript" charset="utf-8"></script>
+    <!--描述：数据访问层，操作本地数据的模块-->
+    <script type="text/javascript" src="../js/server.js"></script>
+    <script type="text/javascript" src="../js/index.js"></script>
 </head>
 
 <body>
@@ -13,9 +16,9 @@
     <div class="header">
         <h1 id="title">Online Store</h1>
 
-        <span><i class="shopping-cart"></i></span>
-        <a class="auth" href="#">注册</a>
-        <a class="auth" href="#">登录</a>
+        <span><i id="ccount">0</i>  <i class="shopping-cart"></i></span>
+        <!-- <a class="auth" href="#">注册</a> -->
+        <a class="auth" href="login.html">未登录</a>
 
     </div>
 
@@ -23,13 +26,13 @@
     <div class="content">
         <!-- 设置广告栏 -->
         <div class="banner">
-            <img src="image/welcome.jpeg" class="banner_img">
+            <img src="../image/welcome.jpeg" class="banner_img">
         </div>
         <div class="img_content">
             <ul>
-                <li>
+                <li pid="1001">
                     <div class="goods">
-                        <img src="image/wumingnvlang.jpg" class="img_li">
+                        <img src="../image/wumingnvlang.jpg" class="img_li">
                         <div class="info">
                             <h3>无名女郎</h3>
                             <p>
@@ -37,19 +40,19 @@
                             </p>
                             <div class="img_btn">
                                 <!-- 价格，购买logo -->
-                                <div class="price">¥ 2300</div>
+                                <div class="price">¥ <span>2300</span></div>
                                 <!-- 购物车按钮 -->
 
-                                <button class="add-to-cart" type="button">Add to cart</button>
+                                <button class="add-to-cart" type="button">加入购物车</button>
 
                             </div>
                         </div>
                     </div>
                 </li>
 
-                <li>
+                <li pid="1002">
                     <div class="goods">
-                        <img src="image/wumingnvlang.jpg" class="img_li">
+                        <img src="../image/wumingnvlang.jpg" class="img_li">
                         <div class="info">
                             <h3>无名女郎</h3>
                             <p>
@@ -57,19 +60,19 @@
                             </p>
                             <div class="img_btn">
                                 <!-- 价格，购买logo -->
-                                <div class="price">¥ 2300</div>
+                                <div class="price">¥ <span>2300</span></div>
                                 <!-- 购物车按钮 -->
 
-                                <button class="add-to-cart" type="button">Add to cart</button>
+                                <button class="add-to-cart" type="button">加入购物车</button>
 
                             </div>
                         </div>
                     </div>
                 </li>
 
-                <li>
+                <li pid="1003">
                     <div class="goods">
-                        <img src="image/wumingnvlang.jpg" class="img_li">
+                        <img src="../image/wumingnvlang.jpg" class="img_li">
                         <div class="info">
                             <h3>无名女郎</h3>
                             <p>
@@ -77,19 +80,19 @@
                             </p>
                             <div class="img_btn">
                                 <!-- 价格，购买logo -->
-                                <div class="price">¥ 2300</div>
+                                <div class="price">¥ <span>2300</span></div>
                                 <!-- 购物车按钮 -->
 
-                                <button class="add-to-cart" type="button">Add to cart</button>
+                                <button class="add-to-cart" type="button">加入购物车</button>
 
                             </div>
                         </div>
                     </div>
                 </li>
 
-                <li>
+                <li pid="1004">
                     <div class="goods">
-                        <img src="image/wumingnvlang.jpg" class="img_li">
+                        <img src="../image/wumingnvlang.jpg" class="img_li">
                         <div class="info">
                             <h3>无名女郎</h3>
                             <p>
@@ -97,19 +100,19 @@
                             </p>
                             <div class="img_btn">
                                 <!-- 价格，购买logo -->
-                                <div class="price">¥ 2300</div>
+                                <div class="price">¥ <span>2300</span></div>
                                 <!-- 购物车按钮 -->
 
-                                <button class="add-to-cart" type="button">Add to cart</button>
+                                <button class="add-to-cart" type="button">加入购物车</button>
 
                             </div>
                         </div>
                     </div>
                 </li>
 
-                <li>
+                <li pid="1005">
                     <div class="goods">
-                        <img src="image/wumingnvlang.jpg" class="img_li">
+                        <img src="../image/wumingnvlang.jpg" class="img_li">
                         <div class="info">
                             <h3>无名女郎</h3>
                             <p>
@@ -117,19 +120,19 @@
                             </p>
                             <div class="img_btn">
                                 <!-- 价格，购买logo -->
-                                <div class="price">¥ 2300</div>
+                                <div class="price">¥ <span>2300</span></div>
                                 <!-- 购物车按钮 -->
 
-                                <button class="add-to-cart" type="button">Add to cart</button>
+                                <button class="add-to-cart" type="button">加入购物车</button>
 
                             </div>
                         </div>
                     </div>
                 </li>
 
-                <li>
+                <li pid="1006">
                     <div class="goods">
-                        <img src="image/wumingnvlang.jpg" class="img_li">
+                        <img src="../image/wumingnvlang.jpg" class="img_li">
                         <div class="info">
                             <h3>无名女郎</h3>
                             <p>
@@ -137,10 +140,10 @@
                             </p>
                             <div class="img_btn">
                                 <!-- 价格，购买logo -->
-                                <div class="price">¥ 2300</div>
+                                <div class="price">¥ <span>2300</span></div>
                                 <!-- 购物车按钮 -->
 
-                                <button class="add-to-cart" type="button">Add to cart</button>
+                                <button class="add-to-cart" type="button">加入购物车</button>
 
                             </div>
                         </div>
@@ -175,6 +178,7 @@
     <div class="footer">
         <p class="p2">造烛求明，读书求理© 2019 POWERED BY <span>WanKcn</span></p>
     </div>
+    
 </body>
 
 </html>
