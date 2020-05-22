@@ -10,7 +10,15 @@ function getLeft(e) {
     return offset;
 }
 window.onload = function () {
-
+    //TODO:获得username
+    var loginStatus=this.document.getElementById("loginStatus");
+    if(this.checkOnboard())
+    {
+        loginStatus.innerHTML=username;
+    }
+    else{
+        loginStatus.innerHTML="未登录"
+    }
     var btns = document.querySelectorAll(".add-to-cart"); //所有的购物车按钮
     var ccount = document.getElementById("ccount"); //显示商品总数量的标签节点对象
     //约定好用名称为datas的cookie来存放购物车里的数据信息  datas里所存放的就是一个json字符串
@@ -134,4 +142,9 @@ function addtocart() {
         listObj = updateData(listObj);
     }
     ccount.innerHTML = getTotalCount();
+}
+
+//检查是否已登陆
+function checkOnboard(){
+    //cookie查询是否已登陆完毕
 }
