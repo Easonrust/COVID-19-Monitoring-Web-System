@@ -7,7 +7,7 @@ body{
 	background-color: #F5F5F5 /*白烟色*/
 }
 a{
-    text-decoration: none;
+	text-decoration: none;
 }
 .header{
 	width: 1200px;
@@ -21,7 +21,7 @@ a{
 }
 #title{
     display: inline-block;
-    margin-right: 860px;
+    margin-right: 950px;
     background-color: #333;
     color: #fff;
     font-size: 20px;

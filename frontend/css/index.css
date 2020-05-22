@@ -6,26 +6,35 @@
 body{
 	background-color: #F5F5F5 /*白烟色*/
 }
+a{text-decoration: none;
+}
 /*--------------------logo,menu,login区域设计--------------------*/
 /*设置页眉的位置*/
 .header{
 	width: 1200px;
     margin: 25px auto; /*注意空格分开而不是逗号*/
-    vertical-align: bottom;
+	vertical-align: bottom;
+	background-color: gray;
+	overflow: hidden;
+}
+#ccount{
+	color: honeydew;
+
 }
 .shopping-cart {
     display: inline-block;
     background: url('http://cdn1.iconfinder.com/data/icons/jigsoar-icons/24/_cart.png') no-repeat 0 0;
     width: 24px;
-    height: 24px;
+	height: 24px;
     margin: 0 10px 0 0;
 }
 .auth{
-    display: inline-block;
+	display: inline-block;
+	color: honeydew;
 }
 #title{
     display: inline-block;
-    margin-right: 900px;
+    margin-right: 830px;
     background-color: #333;
     color: #fff;
     font-size: 20px;
