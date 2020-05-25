@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 @Mapper
 public interface UserDao {
 
-    UserEntity getById(String id);
+    UserEntity getByName(String name);
     int userInsert(UserEntity user);
 }
 

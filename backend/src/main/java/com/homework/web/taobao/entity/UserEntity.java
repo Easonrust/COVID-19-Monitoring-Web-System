@@ -3,20 +3,18 @@ package com.homework.web.taobao.entity;
 
 public class UserEntity {
 
-    protected String id ;
-
     protected String name ;
 
-    protected String firstName ;
+    protected String password ;
 
-    protected String lastName ;
 
-    public String getId() {
-        return id;
+
+    public String getPassword() {
+        return password;
     }
 
-    public void setId(String Id) {
-        this.id = Id;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getName() {

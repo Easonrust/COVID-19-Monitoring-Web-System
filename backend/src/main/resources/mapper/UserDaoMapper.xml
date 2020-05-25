@@ -2,15 +2,15 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.homework.web.taobao.dao.UserDao">
     <!-- 根据主键查询-->
-    <select id="getById" resultType="com.homework.web.taobao.entity.UserEntity" parameterType="java.lang.String" >
+    <select id="getByName" resultType="com.homework.web.taobao.entity.UserEntity" parameterType="java.lang.String" >
         select  *
         from user
-        where id = #{id}
+        where name = #{name}
     </select>
     <!-- 用户注册 -->
     <insert id="userInsert" parameterType="com.homework.web.taobao.entity.UserEntity" useGeneratedKeys="true" keyProperty="uid">
-    insert into user (name, id)
-    values (#{name,jdbcType=VARCHAR}, #{id,jdbcType=VARCHAR})
-  </insert>
+        insert into user (name, password)
+        values (#{name,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR})
+    </insert>
 
 </mapper>
