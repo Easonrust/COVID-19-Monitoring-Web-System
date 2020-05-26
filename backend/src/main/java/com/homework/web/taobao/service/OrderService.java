@@ -6,6 +6,8 @@ import com.homework.web.taobao.entity.OrderEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class OrderService {
     @Autowired
@@ -16,6 +18,11 @@ public class OrderService {
         order.setName(name);
         order.setDate(date);
         order.setTotalprice(totalprice);
-        return orderDao.orderInsert(order);
+        orderDao.orderInsert(order);
+        return order.getOrderid();
+    }
+
+    public List<OrderEntity> getOrder(String name){
+        return orderDao.getOrder(name);
     }
 }
