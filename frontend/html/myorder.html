@@ -3,44 +3,40 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>购物车</title>
+    <title>Cart</title>
     <!--购物车样式表-->
     <link rel="stylesheet" type="text/css" href="../css/myorder.css" />
-    <!--操作cookie的js文件-->
+    <script type="text/javascript" src="../js/cookie.js"></script>
     <script type="text/javascript" src="../js/myorder.js"></script>
+    <!--操作cookie的js文件-->
 </head>
 
 <body>
 
     <div class="header">
         <h1 id="title">Online Store</h1>
-
-
-        <a class="auth" href="login.html">未登录</a>
-
+        <div id="userinfo">
+            <a class="infotext" href="login.html" id="loginStatus">login</a></div>
     </div>
     <div class="container">
-        <h1>我的订单</h1>
-        <h3><a href="index.html">返回首页</a></h3>
+        <h1>My order</h1>
+        <h3><a href="index.html">Go back to the homepage</a></h3>
         <table id="table" border="1" cellspacing="0" cellpadding="0">
             <thead>
                 <tr>
+
+                    <th>Order id</th>
                     <th>
-                        <input type="checkbox" id="allCheck" class="ck" />全选
+                        Date
                     </th>
                     <th>
-                        时间
-                    </th>
-                    <th>
-                        总价
-                    </th>
-                    <th>
-                        收货地址
+                        Total Price
                     </th>
 
 
+
                     <th>
-                        操作
+                        Content
                     </th>
                 </tr>
             </thead>
@@ -48,9 +44,12 @@
 
             </tbody>
         </table>
-        <div class="box" id="box">还没有下过订单哦</div>
+        <div class="box" id="box">You have no order!</div>
     </div>
-
+    <!-- --------------------页脚板块-------------------- -->
+    <div class="footer">
+        <p class="p2">Web system © 2020 POWERED BY <span>Le Yang</span></p>
+    </div>
 
 </body>
 

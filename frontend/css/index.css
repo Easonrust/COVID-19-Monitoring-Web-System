@@ -4,7 +4,8 @@
 	margin: 0px;
 }
 body{
-	background-color: #F5F5F5 /*白烟色*/
+	background-color: #F5F5F5 /*白烟色*/;
+	font-family: cursive;
 }
 a{text-decoration: none;
 }
@@ -19,31 +20,45 @@ a{text-decoration: none;
 }
 #ccount{
 	color: honeydew;
-
+vertical-align: bottom;
 }
+
 .shopping-cart {
     display: inline-block;
     background: url('http://cdn1.iconfinder.com/data/icons/jigsoar-icons/24/_cart.png') no-repeat 0 0;
-    width: 24px;
-	height: 24px;
-    margin: 0 10px 0 0;
+    width: 40px;
+	height: 35px;
+	margin-top: px;
+}
+.shopping-cart:hover{
+	cursor: pointer;
 }
 .auth{
-	display: inline-block;
+	display: inline;
 	color: honeydew;
 }
 #title{
     display: inline-block;
-    margin-right: 830px;
     background-color: #333;
     color: #fff;
     font-size: 20px;
     font-weight: normal;
     text-transform: uppercase;
     padding: 4px 20px;
-    float: left;
 }
-
+#userinfo{
+	float: right;
+	vertical-align: bottom;
+	margin-left: 5px;
+	background-color: indianred;
+}
+.infotext{
+	margin-left: 10px;
+	vertical-align: bottom;
+	font-size: 20px;
+	line-height: 35px;
+	color: honeydew;
+}
 
 /*设置菜单和logo位置*/
 
@@ -86,14 +101,16 @@ a{
 	margin: 0 60px 60px 0; 
 	list-style: none;
 	background-color: #FFFFFF;
+	overflow: hidden;
 	/*处理边框*/
 	margin-top: 30px;
 	height: 500px; /*列表边框*/
-	/*阴影位置， 垂直阴影位置，渐变距离，阴影尺寸，阴影颜色*/
-	/*box-shadow: 0 0 5px 3px #ccc */
-	/*浏览器兼容*/
-	-webkit-box-shadow: 0 0 5px 3px #ccc; /*谷歌浏览器*/
-	-moz-box-shadow: 0 0 5px 3px #ccc; /*火狐浏览器*/
+
+}
+.img_li{
+	width: 360px;
+	height:250px;
+	
 }
 /*标题设置*/
 .content .img_content .info h3{
@@ -145,12 +162,18 @@ a{
 	line-height: 60px;
 	/*border: 1px solid black;*/
 	/*溢出处理*/
-	overflow:hidden;
+	margin-left: 220px;
+	margin-bottom: 50px;
+	overflow: hidden;
+	
 }
-.content .page_nav ul li{
+.content .page_nav ul li {
 	float: left;
 	margin-right: 20px;
 	list-style: none; 
+}
+.content .page_nav ul li span:hover{
+	cursor: pointer;
 }
 .content .page_nav ul{
 	width: 500px;
@@ -158,7 +181,7 @@ a{
 	overflow:hidden;
 }
 /*第一页设置背景圆*/
-.content .page_nav .first_page{
+ .active{
 	border-radius: 50%;
 	background-color: #c5c5c5;
 	padding: 3px 9px; /*圆心内部边距把圆撑起来*/ 
@@ -186,6 +209,15 @@ a{
     height: 150px;
     width: 150px;
     z-index: 100;
+}
+.hide{
+	display: none;
+}
+.show{
+	display: show;
+}
+#signout:hover{
+	cursor: pointer;
 }
 
 

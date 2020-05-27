@@ -82,5 +82,23 @@ public class OrderController {
         return myorders;
     }
 
+    @RequestMapping(value = "/getgoods",method = RequestMethod.POST, headers = "Accept=application/json")
+    public String getGoods(@RequestParam("ok") String ok){
+        List<GoodsEntity> goodss=goodsService.getAllgoods();
+        JSONArray json = new JSONArray();
+        for(int i=0;i<goodss.size();i++){
+            JSONObject jo = new JSONObject();
+            jo.put("goodsid", Integer.toString(goodss.get(i).getGoodsid()));
+            jo.put("goodsname", goodss.get(i).getGoodsname());
+            jo.put("src", goodss.get(i).getSrc());
+            jo.put("desc", goodss.get(i).getDesc());
+            jo.put("price",goodss.get(i).getPrice());
+            json.add(jo);
+        }
+
+        String myorders= JSON.toJSONString(json);
+        return myorders;
+    }
+
 
 }

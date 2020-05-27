@@ -10,6 +10,6 @@ import java.util.List;
 @Repository
 @Mapper
 public interface GoodsDao {
-    List<GoodsEntity> getByOrderid(Integer orderid);
+    List<GoodsEntity> getAllgoods();
 }
 

@@ -6,8 +6,8 @@ function checkObjByPid(id) {
 	var jsonStr = cookieObj.get("datas");
 	var jsonObj = JSON.parse(jsonStr);
 	var isExist = false;
-	for(var i = 0, len = jsonObj.length; i < len; i++) {
-		if(jsonObj[i].pid == id) {
+	for (var i = 0, len = jsonObj.length; i < len; i++) {
+		if (jsonObj[i].pid == id) {
 			isExist = true;
 			break;
 		}
@@ -39,7 +39,7 @@ function getTotalCount() {
 	var totalCount = 0; //默认为0
 	var jsonStr = cookieObj.get("datas");
 	var listObj = JSON.parse(jsonStr);
-	for(var i = 0, len = listObj.length; i < len; i++) {
+	for (var i = 0, len = listObj.length; i < len; i++) {
 		totalCount = listObj[i].pCount + totalCount;
 	}
 	return totalCount;
@@ -52,8 +52,8 @@ function getTotalCount() {
 function updateObjById(id, num) {
 	var jsonStr = cookieObj.get("datas");
 	var listObj = JSON.parse(jsonStr);
-	for(var i = 0, len = listObj.length; i < len; i++) {
-		if(listObj[i].pid == id) {
+	for (var i = 0, len = listObj.length; i < len; i++) {
+		if (listObj[i].pid == id) {
 			listObj[i].pCount = listObj[i].pCount + num;
 			break;
 		}
@@ -67,14 +67,18 @@ function updateObjById(id, num) {
  * */
 function getAllData() {
 	var jsonStr = cookieObj.get("datas");
-	var listObj = JSON.parse(jsonStr);
+	if (!jsonStr || jsonStr == undefined || jsonStr == "undefined") {
+		var listObj = [];
+	} else {
+		var listObj = JSON.parse(jsonStr);
+	}
 	return listObj;
 }
 
 function deleteObjByPid(id) {
 	var lisObj = getAllData();
-	for(var i = 0, len = lisObj.length; i < len; i++) {
-		if(lisObj[i].pid == id) {
+	for (var i = 0, len = lisObj.length; i < len; i++) {
+		if (lisObj[i].pid == id) {
 			lisObj.splice(i, 1);
 			break;
 		}

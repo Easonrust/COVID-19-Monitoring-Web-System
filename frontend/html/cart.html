@@ -1,55 +1,56 @@
 <!DOCTYPE html>
 <html>
 
-	<head>
-		<meta charset="UTF-8">
-		<title>购物车</title>
-		<!--购物车样式表-->
-		<link rel="stylesheet" type="text/css" href="../css/cart.css" />
-		<!--操作cookie的js文件-->
-		<script type="text/javascript" src="../js/cookie.js"></script>
-	</head>
+<head>
+	<meta charset="UTF-8">
+	<title>Cart</title>
+	<!--购物车样式表-->
+	<link rel="stylesheet" type="text/css" href="../css/cart.css" />
+	<!--操作cookie的js文件-->
+	<script type="text/javascript" src="../js/cookie.js"></script>
+</head>
 
-	<body>
-		<div class="header">
-			<h1 id="title">Online Store</h1>
-	
-			<a class="auth" href="myorder.html">我的订单</a>
-			<a class="auth" href="login.html">未登录</a>
-			
-	
-		</div>
-		<div class="container">
-			<h1>购物车</h1>
-			<h3><a href="index.html">返回首页</a></h3>
-			<table id="table" border="1" cellspacing="0" cellpadding="0" class="hide">
-				<thead>
-					<tr>
-						<th>
-							<input type="checkbox" id="allCheck" class="ck" />全选
-						</th>
-						<th>
-							图片
-						</th>
-						<th>
-							描述
-						</th>
-						<th>
-							数量
-						</th>
-						<th>
-							单价
-						</th>
-						<th>
-							小计
-						</th>
-						<th>
-							操作
-						</th>
-					</tr>
-				</thead>
-				<tbody id="tbody">
-					<!--
+<body>
+	<div class="header">
+		<h1 id="title">Online Store</h1>
+		<div id="userinfo">
+			<!-- <a class="auth" href="#">注册</a> -->
+			<a class="auth infotext" href="myorder.html">My order</a>
+			<a class="auth infotext" href="login.html" id="loginStatus">signin</a></div>
+	</div>
+
+
+	<div class="container">
+		<h1>Cart</h1>
+		<h3><a href="index.html">Go back to the homepage</a></h3>
+		<table id="table" border="1" cellspacing="0" cellpadding="0" class="hide">
+			<thead>
+				<tr>
+					<th>
+						<input type="checkbox" id="allCheck" class="ck" />Select all
+					</th>
+					<th>
+						Image
+					</th>
+					<th>
+						Description
+					</th>
+					<th>
+						Sum
+					</th>
+					<th>
+						Price
+					</th>
+					<th>
+						Add price
+					</th>
+					<th>
+						Operation
+					</th>
+				</tr>
+			</thead>
+			<tbody id="tbody">
+				<!--
 					<tr>
 						<td>
 							<input type="checkbox" class="ck"  />
@@ -74,16 +75,19 @@
 						</td>
 					</tr>
 					-->
-				</tbody>
-			</table>
-			<div class="box" id="box">购物车里没有任何商品</div>
-			<h2 id="h2" class="">总价格：￥<span id="totalPrice">0</span></h2>
-			<button id="orderbtn">下单</button>
-		</div>
-		
-		<script src="../js/server.js" type="text/javascript" charset="utf-8"></script>
-		<!--操作购物车页面的cart.js-->
-		<script src="../js/cart.js"></script>
-	</body>
+			</tbody>
+		</table>
+		<div class="box" id="box">There is no goods</div>
+		<h2 id="h2" class="">Total price：￥<span id="totalPrice">0</span></h2>
+		<button id="orderbtn">Order</button>
+	</div>
+
+	<script src="../js/server.js" type="text/javascript" charset="utf-8"></script>
+	<!--操作购物车页面的cart.js-->
+	<script src="../js/cart.js"></script>
+	<div class="footer">
+		<p class="p2">Web system © 2020 POWERED BY <span>Le Yang</span></p>
+	</div>
+</body>
 
 </html>

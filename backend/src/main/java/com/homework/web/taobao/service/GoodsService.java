@@ -13,7 +13,7 @@ import java.util.List;
 public class GoodsService {
     @Autowired
     private GoodsDao goodsDao ;
-    public List<GoodsEntity> getByOrderid(Integer orderid){
-        return goodsDao.getByOrderid(orderid);
+    public List<GoodsEntity> getAllgoods(){
+        return goodsDao.getAllgoods();
     }
 }

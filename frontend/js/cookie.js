@@ -1,8 +1,4 @@
-/*
-	单例设计模式
-	完整形式：[]中是可选项
-	document.cookie  = “name=value[;expires=date][;path=path-to-resource][;domain=域名][;secure]”
-*/
+
 
 var cookieObj = {
 	/*

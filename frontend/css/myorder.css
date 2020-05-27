@@ -3,40 +3,47 @@
 	padding: 0;
 }
 
-body{
-	background-color: #F5F5F5 /*白烟色*/
+body {
+	background-color: #F5F5F5
+		/*白烟色*/
+	;
+	font-family: cursive;
 }
-a{
+
+a {
 	text-decoration: none;
 }
-.header{
+th{
+	white-space: pre-line;
+}
+.header {
 	width: 1200px;
-    margin: 25px auto; /*注意空格分开而不是逗号*/
+	margin: 25px auto;
+	/*注意空格分开而不是逗号*/
 	vertical-align: bottom;
 	background-color: gray;
 	overflow: hidden;
 }
-.auth{
-    display: inline-block;
-}
-#title{
-    display: inline-block;
-    margin-right: 950px;
-    background-color: #333;
-    color: #fff;
-    font-size: 20px;
-    font-weight: normal;
-    text-transform: uppercase;
-    padding: 4px 20px;
+
+#title {
+	display: inline-block;
+	background-color: #333;
+	color: #fff;
+	font-size: 20px;
+	font-weight: normal;
+	text-transform: uppercase;
+	padding: 4px 20px;
 
 }
-#orderbtn{
-    margin-top: 20px;
-    background-color: rgb(184, 101, 101);
-    font-size: 20px;
-    width: 100px;
-    border-radius: 10px;
+
+#orderbtn {
+	margin-top: 20px;
+	background-color: rgb(184, 101, 101);
+	font-size: 20px;
+	width: 100px;
+	border-radius: 10px;
 }
+
 .container {
 	width: 1200px;
 	margin: 0 auto;
@@ -83,7 +90,8 @@ table tbody input {
 	text-align: center;
 }
 
-.up,.down {
+.up,
+.down {
 	width: 20px;
 }
 
@@ -111,4 +119,37 @@ h2.hide {
 h2 span {
 	font: bold 33px/33px "微软雅黑";
 	color: red;
+}
+
+.footer {
+	width: 1200px;
+	height: 100px;
+	margin: 60px auto;
+	/*加一条上边框分割线*/
+	border-top: 1px solid #ccc;
+	overflow: hidden;
+}
+
+.footer p {
+	text-align: center;
+	line-height: 80px;
+}
+
+.footer p span {
+	color: #ff1490;
+}
+
+#userinfo {
+	float: right;
+	background-color: indianred;
+}
+
+.infotext {
+	margin-left: 5px;
+	font-size: 20px;
+	line-height: 35px;
+	color: honeydew;
+}
+#signout:hover{
+	cursor: pointer;
 }
