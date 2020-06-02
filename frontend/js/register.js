@@ -9,7 +9,7 @@ function register() {
     var password = document.getElementById("password").value;
     var repassword = document.getElementById("rpassword").value;
 
-    if (username.value == "") {
+    if (username == "") {
 
         alert("Put in the username!");
 
