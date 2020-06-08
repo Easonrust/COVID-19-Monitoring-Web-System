@@ -20,6 +20,8 @@ import addWorldMap from "./js/worldmap";
 import scrollSpy, {
     Easing
 } from 'vue2-scrollspy';
+import vueXlsxTable from 'vue-xlsx-table'
+Vue.use(vueXlsxTable, {rABS: false})
 
 Vue.use(scrollSpy, {
     easing: Easing.Quartic.InOut

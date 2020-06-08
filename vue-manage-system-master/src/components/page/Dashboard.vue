@@ -281,15 +281,37 @@ export default {
         this.launchIndicator = this.$t('launchIndicator')[Math.floor(Math.random() * this.$t('launchIndicator').length)];
 
         let performanceTimeStart = performance.now();
-        fetch('https://henryz.cc/projects/covid/api.php').then(async res => {
-            let data = await res.json();
-            var str = JSON.stringify(data);
-            localStorage.setItem('data', str);
+        let data = JSON.parse(localStorage.getItem('data'));
+        if (!data) {
+            fetch('https://henryz.cc/projects/covid/api.php').then(async res => {
+                let data = await res.json();
+                var str = JSON.stringify(data);
+                localStorage.setItem('data', str);
+                let resTime = Math.round(performance.now() - performanceTimeStart);
+                this.dataUk = data.uk;
+                this.dataUs = data.us;
+                this.dataGlobal = data.global;
+                console.log(data.global);
+                this.lastUpdated = `Global data updated ${moment(data.global.confirmed.last_updated).fromNow()},
+                          UK data updated ${moment(data.uk.now[0].ts).fromNow()}, data is ${data.isUpToDate ? '' : 'NOT'} up to date.
+                          Data might not reflect the real number, and might be delayed.`;
+                //global data
+                this.tableData.global = getGlobalHistoryTableData(this.dataGlobal, false, true);
+                let countryArr = getAllCountries(this.dataGlobal.confirmed.locations);
+                this.countryList = [this.$t('selector.world'), this.$t('selector.uk'), this.$t('selector.us'), ...countryArr];
+                this.initLocation(timeZone);
+
+                this.getNavScrollAnchor();
+                let performanceTime = Math.round(performance.now() - performanceTimeStart);
+                console.log('Data loaded', resTime, performanceTime);
+                window.ga('send', 'event', 'net-request', 'initial-fetch-loaded', `loaded-${resTime}ms;calculated-${performanceTime}ms;`);
+            });
+        } else {
             let resTime = Math.round(performance.now() - performanceTimeStart);
             this.dataUk = data.uk;
             this.dataUs = data.us;
             this.dataGlobal = data.global;
-            console.log(data.global);
+            console.log(data);
             this.lastUpdated = `Global data updated ${moment(data.global.confirmed.last_updated).fromNow()},
                           UK data updated ${moment(data.uk.now[0].ts).fromNow()}, data is ${data.isUpToDate ? '' : 'NOT'} up to date.
                           Data might not reflect the real number, and might be delayed.`;
@@ -303,11 +325,8 @@ export default {
             let performanceTime = Math.round(performance.now() - performanceTimeStart);
             console.log('Data loaded', resTime, performanceTime);
             window.ga('send', 'event', 'net-request', 'initial-fetch-loaded', `loaded-${resTime}ms;calculated-${performanceTime}ms;`);
-        });
+        }
 
-        setTimeout(() => {
-            this.showWechatPopup = false;
-        }, 2000);
     },
     methods: {
         initLocation: function(timezone) {
@@ -491,6 +510,7 @@ export default {
     padding: 0;
     padding-left: 10px;
     border-left: 6px solid rgb(0, 195, 255);
+    font-weight: bold;
 }
 .vertical-center {
     margin: 0;
@@ -515,7 +535,6 @@ export default {
 }
 .displaysection {
     width: 50%;
-
 }
 </style>
 

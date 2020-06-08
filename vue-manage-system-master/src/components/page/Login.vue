@@ -1,53 +1,130 @@
 <template>
     <div class="login-wrap">
         <div class="ms-login">
-            <div class="ms-title">后台管理系统</div>
-            <el-form :model="param" :rules="rules" ref="login" label-width="0px" class="ms-content">
-                <el-form-item prop="username">
-                    <el-input v-model="param.username" placeholder="username">
-                        <el-button slot="prepend" icon="el-icon-lx-people"></el-button>
-                    </el-input>
-                </el-form-item>
-                <el-form-item prop="password">
-                    <el-input
-                        type="password"
-                        placeholder="password"
-                        v-model="param.password"
-                        @keyup.enter.native="submitForm()"
+            <div class="ms-title">全球新冠疫情检测系统</div>
+            <el-tabs v-model="activeName" @tab-click="handleClick">
+                <el-tab-pane label="登录" name="first">
+                    <el-form
+                        :model="param"
+                        :rules="rules"
+                        ref="login"
+                        label-width="0px"
+                        class="ms-content"
                     >
-                        <el-button slot="prepend" icon="el-icon-lx-lock"></el-button>
-                    </el-input>
-                </el-form-item>
-                <div class="login-btn">
-                    <el-button type="primary" @click="submitForm()">登录</el-button>
-                </div>
-                <p class="login-tips">Tips : 用户名和密码随便填。</p>
-            </el-form>
+                        <el-form-item prop="username">
+                            <el-input v-model="param.username" placeholder="username">
+                                <el-button slot="prepend" icon="el-icon-lx-people"></el-button>
+                            </el-input>
+                        </el-form-item>
+                        <el-form-item prop="password">
+                            <el-input
+                                type="password"
+                                placeholder="password"
+                                v-model="param.password"
+                                @keyup.enter.native="login()"
+                            >
+                                <el-button slot="prepend" icon="el-icon-lx-lock"></el-button>
+                            </el-input>
+                        </el-form-item>
+                        <div class="login-btn">
+                            <el-button type="primary" @click="login()">登录</el-button>
+                        </div>
+                    </el-form>
+                </el-tab-pane>
+                <el-tab-pane label="注册" name="second">
+                    <el-form
+                        :model="rparam"
+                        :rules="rrules"
+                        ref="login"
+                        label-width="0px"
+                        class="ms-content"
+                    >
+                        <el-form-item prop="rusername">
+                            <el-input v-model="rparam.rusername" placeholder="username">
+                                <el-button slot="prepend" icon="el-icon-lx-people"></el-button>
+                            </el-input>
+                        </el-form-item>
+                        <el-form-item prop="rpassword">
+                            <el-input
+                                type="password"
+                                placeholder="password"
+                                v-model="rparam.rpassword"
+                                @keyup.enter.native="register()"
+                            >
+                                <el-button slot="prepend" icon="el-icon-lx-lock"></el-button>
+                            </el-input>
+                        </el-form-item>
+                        <el-form-item prop="rcountry">
+                            <el-input v-model="rparam.rcountry" placeholder="country">
+                                <el-button slot="prepend" icon="el-icon-location"></el-button>
+                            </el-input>
+                        </el-form-item>
+                        <div class="login-btn">
+                            <el-button type="primary" @click="register()">Register</el-button>
+                        </div>
+                    </el-form>
+                </el-tab-pane>
+            </el-tabs>
         </div>
     </div>
 </template>
 
 <script>
+import $ from 'jquery';
 export default {
     data: function() {
         return {
             param: {
                 username: 'admin',
-                password: '123123',
+                password: '123123'
             },
             rules: {
                 username: [{ required: true, message: '请输入用户名', trigger: 'blur' }],
-                password: [{ required: true, message: '请输入密码', trigger: 'blur' }],
+                password: [{ required: true, message: '请输入密码', trigger: 'blur' }]
             },
+
+            rparam: {
+                rusername: '',
+                rpassword: '',
+                rcountry: ''
+            },
+
+            rrules: {
+                rusername: [{ required: true, message: '请输入用户名', trigger: 'blur' }],
+                rpassword: [{ required: true, message: '请输入密码', trigger: 'blur' }],
+                rcountry: [{ required: true, message: '请输入国家', trigger: 'blur' }]
+            },
+
+            activeName: 'first'
         };
     },
     methods: {
-        submitForm() {
+        handleClick(tab, event) {},
+        login() {
             this.$refs.login.validate(valid => {
                 if (valid) {
-                    this.$message.success('登录成功');
-                    localStorage.setItem('ms_username', this.param.username);
-                    this.$router.push('/');
+                    var _this = this;
+                    $.ajax({
+                        url: 'http://localhost:8080/user/login',
+                        data: 'name=' + _this.param.username + '&password=' + _this.param.password,
+                        type: 'POST',
+                        datatype: 'text',
+                        complete: function(data) {
+                            if (data.status == 200) {
+                                console.log(data.responseText);
+                                if (data.responseText == 'succeed') {
+                                    _this.$message.success('登录成功！');
+                                    localStorage.setItem('ms_username', _this.param.username);
+                                    _this.$router.push('/');
+                                } else {
+                                    _this.$message.error('账号或密码错误');
+                                }
+                            }
+                        }
+                    });
+
+                    // localStorage.setItem('ms_username', this.param.username);
+                    // this.$router.push('/');
                 } else {
                     this.$message.error('请输入账号和密码');
                     console.log('error submit!!');
@@ -55,7 +132,37 @@ export default {
                 }
             });
         },
-    },
+        register() {
+            this.$refs.login.validate(valid => {
+                if (valid) {
+                    var _this = this;
+                    $.ajax({
+                        url: 'http://localhost:8080/user/register',
+                        data:
+                            'name=' + _this.rparam.rusername + '&password=' + _this.rparam.rpassword + '&country=' + _this.rparam.rcountry,
+                        type: 'POST',
+                        datatype: 'text',
+                        complete: function(data) {
+                            if (data.status == 200) {
+                                if (data.responseText == 'fail') {
+                                    _this.$message.error('用户已存在！');
+                                } else {
+                                    _this.$message.success('注册成功！');
+                                }
+                            }
+                        }
+                    });
+
+                    // localStorage.setItem('ms_username', this.param.username);
+                    // this.$router.push('/');
+                } else {
+                    this.$message.error('输入不能为空');
+                    console.log('error submit!!');
+                    return false;
+                }
+            });
+        }
+    }
 };
 </script>
 

@@ -1,12 +1,14 @@
 <template>
     <div id="globe">
-        <div id="headline-news"></div>
+        <vue-xlsx-table @on-select-file="handleSelectedFile" id="excel">导入excel</vue-xlsx-table>
         <div id="filter">
             <label>
-                Search for a country:
-                <input type="text" id="countryName" value="China" />
+                请选择一个城市：
+                <el-input v-model="countryName" placeholder="请输入国家"></el-input>
             </label>
-            <button id="search-btn">View</button>
+            <el-button type="success" @click="search">查询</el-button>
+            <el-button type="primary" @click="getjson">可视化观看</el-button>
+            
         </div>
         <div id="globalArea"></div>
         <div id="summary-live-stats"></div>
@@ -18,6 +20,9 @@ import $ from 'jquery';
 export default {
     data: function() {
         return {
+            countryName: 'China',
+            controller: null,
+            json: null,
             countries: [],
             settings: {
                 async: true,
@@ -59,22 +64,22 @@ export default {
         var _this = this;
         var container = document.getElementById('globalArea');
 
-        var controller = new GIO.Controller(container);
-        controller.configure(this.configs);
+        this.controller = new GIO.Controller(container);
+        this.controller.configure(this.configs);
 
         this.getCountries();
         this.getLatestData('CN');
         // call the init() API to show the IO globe in the browser
-        controller.setStyle('earlySpring');
-        controller.onCountryPicked(callback);
+        this.controller.setStyle('earlySpring');
+        this.controller.onCountryPicked(callback);
         function callback(selectedCountry) {
             console.log(selectedCountry);
-            controller.switchCountry(selectedCountry.ISOCode);
+            _this.controller.switchCountry(selectedCountry.ISOCode);
             _this.getLatestData(selectedCountry.ISOCode);
         }
-        controller.init();
+        this.controller.init();
 
-        var scene = controller.getScene();
+        var scene = this.controller.getScene();
 
         // create a universe background which is an Three.js object
 
@@ -83,31 +88,46 @@ export default {
         // add universe to the scene
 
         scene.add(universe);
-
-        $('#search-btn').on('click', function() {
-            let country = _this.countries.filter(
-                c =>
-                    c.value ===
-                    $('#countryName')
-                        .val()
-                        .trim()
-            );
-            console.log(country);
-            if (!country) return;
-            _this.selectedCountry.name = country[0].value;
-            _this.selectedCountry.alpha2code = country[0].data;
-            controller.switchCountry(_this.selectedCountry.alpha2code);
-            _this.getLatestData(_this.selectedCountry.alpha2code);
-        });
     },
     methods: {
+        search() {
+            var _this = this;
+            let country = this.countries.filter(c => c.value === _this.countryName);
+            console.log(country);
+            if (!country) return;
+            this.selectedCountry.name = country[0].value;
+            this.selectedCountry.alpha2code = country[0].data;
+            this.controller.switchCountry(this.selectedCountry.alpha2code);
+            this.getLatestData(this.selectedCountry.alpha2code);
+        },
+        handleSelectedFile(convertedData) {
+            console.log(JSON.stringify(convertedData));
+            this.json = JSON.stringify(convertedData);
+            this.$message({
+                message: '图表导入成功!',
+                type: 'success'
+            });
+        },
+        getjson() {
+            if (this.json) {
+                var data = JSON.parse(this.json);
+
+                this.controller.addData(data.body);
+                console.log(this.controller);
+            } else {
+                this.$message({
+                    message: '没有导入任何图表!',
+                    type: 'warning'
+                });
+            }
+        },
         onSelectGlobe: function(pickedCountry) {
             let country = this.countries.filter(c => c.data === pickedCountry.ISOCode);
             if (!country) return;
             this.selectedCountry.name = country[0].value;
             this.selectedCountry.alpha2code = country[0].data;
             this.controller.switchCountry(this.selectedCountry.alpha2code);
-            $('#countryName').val(country[0].value);
+            this.countryName.val(country[0].value);
             this.getLatestData(this.selectedCountry.alpha2code);
         },
 
@@ -117,7 +137,6 @@ export default {
                 for (let country of response) {
                     _this.countries.push({ value: country.name, data: country.alpha2code });
                 }
-
             });
         },
         getLatestData: function(countryCode) {
@@ -153,6 +172,9 @@ export default {
 };
 </script>
 <style scoped>
+#excel {
+    background-color: while;
+}
 #globe {
     width: 100%;
     height: 80%;
@@ -162,19 +184,9 @@ export default {
     height: 100%;
 }
 
-#headline-news {
-    text-align: center;
-    background-color: red;
-    top: 0;
-}
-
-#headline-news a {
-    color: white;
-}
-
 #filter {
     margin-top: 20px;
-    text-align: center;
+    text-align: left;
 }
 
 #search-btn {

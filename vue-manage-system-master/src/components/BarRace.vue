@@ -95,12 +95,7 @@
             //     .attr("y", 55)
             //     .html(this.subtitle);
 
-            let caption = svg.append('text')
-                .attr('class', 'caption')
-                .attr('x', width)
-                .attr('y', height-5)
-                .style('text-anchor', 'end')
-                .html("©covid19track.site | Data ©JHU");
+            
 
             this.day =  this.mainDate && isDateValid(this.mainDate, this.raceData[0].day, this.raceData[this.raceData.length-1].day ) ? this.mainDate :  this.raceData[0].day;
 

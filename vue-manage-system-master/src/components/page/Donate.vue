@@ -1,24 +1,49 @@
 <template>
-    <div>
-        <div class="crumbs">
-            <el-breadcrumb separator="/">
-                <el-breadcrumb-item>
-                    <i class="el-icon-lx-redpacket_fill"></i> 支持作者
-                </el-breadcrumb-item>
-            </el-breadcrumb>
-        </div>
-        <div class="container">
-            <div class="plugins-tips">如果该框架对你有帮助，那就请作者喝杯饮料吧！加微信号linxin_20探讨问题。</div>
-            <div>
-                <img src="https://lin-xin.gitee.io/images/weixin.jpg" />
-            </div>
-        </div>
+    <div id="section">
+        <vue-xlsx-table @on-select-file="handleSelectedFile">导入excel</vue-xlsx-table>
+        <el-button @click="getjson">可视化观看</el-button>
+        <div id="globalArea"></div>
     </div>
 </template>
-
 <script>
-export default {};
-</script>
+export default {
+    data: function() {
+        return {
+            json: null,
+            controller: null
+        };
+    },
+    methods: {
+        handleSelectedFile(convertedData) {
+            console.log(JSON.stringify(convertedData));
+            this.json = JSON.stringify(convertedData);
+        },
+        getjson() {
+            var data = JSON.parse(this.json);
+            
+            this.controller.addData(data.body);
+            console.log(this.controller);
+        }
+    },
+    mounted() {
+        var container = document.getElementById('globalArea');
 
-<style>
+        // create controller for the IO globe, input the container as the parameter
+
+        this.controller = new GIO.Controller(container);
+        this.controller.init();
+    }
+};
+</script>
+<style scoped>
+#section {
+    width: 100%;
+    height: 100%;
+}
+#globalArea {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
 </style>
