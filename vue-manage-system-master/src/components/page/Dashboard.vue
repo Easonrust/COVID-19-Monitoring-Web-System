@@ -1,5 +1,9 @@
 <template>
     <div id="dashboard">
+        <el-button @click="download">下载数据</el-button>
+        <el-button @click="upload">导入数据</el-button>
+        <input id="file" type="file" accept=".json" />
+
         <div v-if="dataCurrent && shouldRender">
             <div>
                 <div>
@@ -200,6 +204,8 @@ import NearbyCasesFinder from '../NearbyCasesFinder.vue';
 import FAB from '../FAB.vue';
 import vSelect from 'vue-select';
 import 'vue-select/dist/vue-select.css';
+import $ from 'jquery';
+import FileSaver from 'file-saver';
 import {
     getRegionHistoryTableData,
     getGlobalHistoryTableData,
@@ -260,10 +266,26 @@ export default {
             lastUpdated: 'NEVER',
             launchIndicator: '',
             isDesktop: false,
-            desktopLayout: false
+            desktopLayout: false,
+            myjson: null
         };
     },
     mounted() {
+        let username = localStorage.getItem('ms_username');
+        var _this = this;
+        $.ajax({
+            url: 'http://123.57.229.179:8083/user/getCountry',
+            data: 'name=' + username,
+            type: 'POST',
+            datatype: 'text',
+            complete: function(data) {
+                if (data.status == 200) {
+                    console.log(data.responseText);
+                    _this.switchCountry(data.responseText);
+                }
+            }
+        });
+
         window.dateFormat = 'DD MMM';
         let timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
         if (this.isWeChat()) {
@@ -287,6 +309,7 @@ export default {
                 let data = await res.json();
                 var str = JSON.stringify(data);
                 localStorage.setItem('data', str);
+                this.myjson = str;
                 let resTime = Math.round(performance.now() - performanceTimeStart);
                 this.dataUk = data.uk;
                 this.dataUs = data.us;
@@ -326,7 +349,6 @@ export default {
             console.log('Data loaded', resTime, performanceTime);
             window.ga('send', 'event', 'net-request', 'initial-fetch-loaded', `loaded-${resTime}ms;calculated-${performanceTime}ms;`);
         }
-
     },
     methods: {
         initLocation: function(timezone) {
@@ -484,6 +506,41 @@ export default {
 
             window.onresize = checkLayout;
             checkLayout();
+        },
+        download() {
+            const blob = new Blob([this.myjson], { type: '' });
+            FileSaver.saveAs(blob, 'data.json');
+        },
+        upload() {
+            const file = document.getElementById('file').files[0];
+            const reader = new FileReader();
+            reader.readAsText(file);
+            const _this = this;
+            reader.onload = function() {
+                // this.result为读取到的json字符串，需转成json对象
+                let data = JSON.parse(this.result);
+                // 检测是否导入成功
+                let performanceTimeStart = performance.now();
+                let timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+                let resTime = Math.round(performance.now() - performanceTimeStart);
+                _this.dataUk = data.uk;
+                _this.dataUs = data.us;
+                _this.dataGlobal = data.global;
+                console.log(data);
+                _this.lastUpdated = `Global data updated ${moment(data.global.confirmed.last_updated).fromNow()},
+                          UK data updated ${moment(data.uk.now[0].ts).fromNow()}, data is ${data.isUpToDate ? '' : 'NOT'} up to date.
+                          Data might not reflect the real number, and might be delayed.`;
+                //global data
+                _this.tableData.global = getGlobalHistoryTableData(_this.dataGlobal, false, true);
+                let countryArr = getAllCountries(_this.dataGlobal.confirmed.locations);
+                _this.countryList = [_this.$t('selector.world'), _this.$t('selector.uk'), _this.$t('selector.us'), ...countryArr];
+                _this.initLocation(timeZone);
+
+                _this.getNavScrollAnchor();
+                let performanceTime = Math.round(performance.now() - performanceTimeStart);
+                console.log('Data loaded', resTime, performanceTime);
+                window.ga('send', 'event', 'net-request', 'initial-fetch-loaded', `loaded-${resTime}ms;calculated-${performanceTime}ms;`);
+            };
         }
     },
     computed: {

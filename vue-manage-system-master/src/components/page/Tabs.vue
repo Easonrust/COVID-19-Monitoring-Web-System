@@ -29,17 +29,19 @@
                 </el-select>
             </label>
             <div style="padding:50px" id="my">
-                <canvas id="myChart" width="400" height="100"></canvas>
+                <canvas id="myChart" width="400px" height="100px"></canvas>
             </div>
             <div style="padding:50px" id="train">
-                <canvas id="trainChart" width="400" height="100"></canvas>
+                <canvas id="trainChart" width="400px" height="100px"></canvas>
             </div>
 
             <div style="padding:50px" id="predict">
-                <canvas id="predictChart" width="400" height="100"></canvas>
+                <canvas id="predictChart" width="400px" height="100px"></canvas>
             </div>
         </div>
         <div id="training" class="hide">
+
+            
             <div class="vertical-center">
                 <div
                     class="spinner-border text-primary"
@@ -140,7 +142,7 @@ export default {
         train() {
             if (this.myChart) {
                 document.getElementById('training').className = '';
-                document.getElementById("displayarea").className='hide';
+                document.getElementById('displayarea').className = 'hide';
                 this.itraining = false;
                 this.xs = [];
                 this.ys = [];
@@ -269,7 +271,7 @@ export default {
                         }
                     });
                     document.getElementById('training').className = 'hide';
-                    document.getElementById("displayarea").className='';
+                    document.getElementById('displayarea').className = '';
                 });
             } else {
                 this.$message({
@@ -285,55 +287,6 @@ export default {
 };
 </script>
 <style>
-.field,
-.field-label {
-    height: 30px;
-    padding: 0px 15px;
-    float: left;
-    width: 50%;
-}
-.field {
-    border-radius: 0px 5px 5px 0px;
-    border: 1px solid #eee;
-    margin-bottom: 15px;
-    height: 40px;
-}
-.col-sm-1:after {
-    content: '';
-    display: table;
-    clear: both;
-}
-.section,
-.field-label {
-    text-align: left;
-    font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-    /* 1 */
-    font-weight: 100;
-}
-.field-label {
-    font-weight: 700;
-}
-.button-add-example {
-    width: 100%;
-    margin-bottom: 10px;
-}
-.button-train {
-    width: 100%;
-}
-.predict-controls {
-    padding-top: 30px;
-    padding-bottom: 30px;
-}
-.predict-controls .element {
-    width: 50%;
-    display: block;
-}
-button {
-    margin-top: 10px;
-    font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-    /* 1 */
-    font-weight: 700;
-}
 .param {
     margin-right: 30px;
 }

@@ -8,7 +8,6 @@
             </label>
             <el-button type="success" @click="search">查询</el-button>
             <el-button type="primary" @click="getjson">可视化观看</el-button>
-            
         </div>
         <div id="globalArea"></div>
         <div id="summary-live-stats"></div>
@@ -63,6 +62,21 @@ export default {
     mounted() {
         var _this = this;
         var container = document.getElementById('globalArea');
+
+        let username = localStorage.getItem('ms_username');
+        $.ajax({
+            url: 'http://123.57.229.179:8083/user/getCountry',
+            data: 'name=' + username,
+            type: 'POST',
+            datatype: 'text',
+            complete: function(data) {
+                if (data.status == 200) {
+                    console.log(data.responseText);
+                    _this.countryName = data.responseText;
+                    _this.search;
+                }
+            }
+        });
 
         this.controller = new GIO.Controller(container);
         this.controller.configure(this.configs);

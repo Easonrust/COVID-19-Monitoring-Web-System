@@ -32,13 +32,7 @@
                     </el-form>
                 </el-tab-pane>
                 <el-tab-pane label="注册" name="second">
-                    <el-form
-                        :model="rparam"
-                        :rules="rrules"
-                        ref="login"
-                        label-width="0px"
-                        class="ms-content"
-                    >
+                    <el-form :model="rparam" ref="login" label-width="0px" class="ms-content">
                         <el-form-item prop="rusername">
                             <el-input v-model="rparam.rusername" placeholder="username">
                                 <el-button slot="prepend" icon="el-icon-lx-people"></el-button>
@@ -75,8 +69,9 @@ export default {
     data: function() {
         return {
             param: {
-                username: 'admin',
-                password: '123123'
+                username: 'lele',
+                password: 'lele',
+                rcountry: 'China'
             },
             rules: {
                 username: [{ required: true, message: '请输入用户名', trigger: 'blur' }],
@@ -89,12 +84,6 @@ export default {
                 rcountry: ''
             },
 
-            rrules: {
-                rusername: [{ required: true, message: '请输入用户名', trigger: 'blur' }],
-                rpassword: [{ required: true, message: '请输入密码', trigger: 'blur' }],
-                rcountry: [{ required: true, message: '请输入国家', trigger: 'blur' }]
-            },
-
             activeName: 'first'
         };
     },
@@ -105,7 +94,7 @@ export default {
                 if (valid) {
                     var _this = this;
                     $.ajax({
-                        url: 'http://localhost:8080/user/login',
+                        url: 'http://123.57.229.179:8083/user/login',
                         data: 'name=' + _this.param.username + '&password=' + _this.param.password,
                         type: 'POST',
                         datatype: 'text',
@@ -137,7 +126,7 @@ export default {
                 if (valid) {
                     var _this = this;
                     $.ajax({
-                        url: 'http://localhost:8080/user/register',
+                        url: 'http://123.57.229.179:8083/user/register',
                         data:
                             'name=' + _this.rparam.rusername + '&password=' + _this.rparam.rpassword + '&country=' + _this.rparam.rcountry,
                         type: 'POST',
