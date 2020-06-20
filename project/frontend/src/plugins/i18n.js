@@ -14,17 +14,15 @@ const barRaceColor = {
 const messages = {
     'en': {
 
-        pageTitle: "COVID-19 Realtime Data Visualization and Timeline - Coronavirus Nearby Cases Finder",
+        pageTitle: "COVID-19 system",
         title: "Realtime Tracking<br>& Timeline",
         dateFormat: "DD MMM",
-        launchIndicator: ["Stay home, stay safe.", "For easier access, add us to home page or bookmark.",
-            "Add us to the home page or bookmark for faster access", "To keep you updated, bookmark or add us to the home page.", "Tips: tap chart legend to hide specific data set"],
-     i18n:{
-                tips:"需要中文？",
-                btn:"切换到中文"
-            },
+        i18n: {
+            tips: "需要中文？",
+            btn: "切换到中文"
+        },
         subtitles: {
-            region:"Region",
+            region: "Region",
             today: "Today Overview",
             country: "Country Overview",
             nearby: "Cases Near Me",
@@ -131,16 +129,16 @@ const messages = {
         }
     },
     'zh': {
-        pageTitle: "COVID-19 实时疫情数据跟踪 - UCLCSSA 中国学联",
+        pageTitle: "COVID-19 system",
         title: "实时数据动态",
         dateFormat: "MM/DD",
-        launchIndicator: ["在微信中将此页面设为浮窗，方便第一时间获取更新", "请保护好自己：）", "添加到收藏夹或主屏幕，方便下次访问！", "提示：点击图表标识可以隐藏某一个数据"] ,
-        i18n:{
-            tips:"need English？",
-            btn:"change to English"
+
+        i18n: {
+            tips: "need English？",
+            btn: "change to English"
         },
         subtitles: {
-            region:"地区",
+            region: "地区",
             today: "今日概览",
             country: "国家概览",
             nearby: "查询周边确诊",

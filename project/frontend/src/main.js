@@ -21,7 +21,9 @@ import scrollSpy, {
     Easing
 } from 'vue2-scrollspy';
 import vueXlsxTable from 'vue-xlsx-table'
-Vue.use(vueXlsxTable, {rABS: false})
+Vue.use(vueXlsxTable, {
+    rABS: false
+})
 
 Vue.use(scrollSpy, {
     easing: Easing.Quartic.InOut
@@ -39,7 +41,7 @@ Vue.config.productionTip = false;
 
 //使用钩子函数对路由进行权限跳转
 router.beforeEach((to, from, next) => {
-    document.title = `${to.meta.title} | vue-manage-system`;
+    document.title = `${to.meta.title} | covid system`;
     const role = localStorage.getItem('ms_username');
     if (!role && to.path !== '/login') {
         next('/login');
