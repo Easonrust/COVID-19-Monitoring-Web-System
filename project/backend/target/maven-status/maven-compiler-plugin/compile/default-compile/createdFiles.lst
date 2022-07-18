@@ -1,8 +1,0 @@
-com/homework/web/covid/config/dao/SessionFactoryConfiguration.class
-com/homework/web/covid/service/UserService.class
-com/homework/web/covid/controller/UserController.class
-com/homework/web/covid/covidApplication.class
-com/homework/web/covid/entity/UserEntity.class
-com/homework/web/covid/dao/UserDao.class
-com/homework/web/covid/config/dao/DataSourceConfiguration.class
-com/homework/web/covid/config/service/TransactionManagementConfiguration.class

@@ -1,8 +1,0 @@
-/Users/leyang/Desktop/WebHomeWork/WebSystemProject/backend/src/main/java/com/homework/web/covid/config/dao/DataSourceConfiguration.java
-/Users/leyang/Desktop/WebHomeWork/WebSystemProject/backend/src/main/java/com/homework/web/covid/config/dao/SessionFactoryConfiguration.java
-/Users/leyang/Desktop/WebHomeWork/WebSystemProject/backend/src/main/java/com/homework/web/covid/entity/UserEntity.java
-/Users/leyang/Desktop/WebHomeWork/WebSystemProject/backend/src/main/java/com/homework/web/covid/config/service/TransactionManagementConfiguration.java
-/Users/leyang/Desktop/WebHomeWork/WebSystemProject/backend/src/main/java/com/homework/web/covid/dao/UserDao.java
-/Users/leyang/Desktop/WebHomeWork/WebSystemProject/backend/src/main/java/com/homework/web/covid/controller/UserController.java
-/Users/leyang/Desktop/WebHomeWork/WebSystemProject/backend/src/main/java/com/homework/web/covid/service/UserService.java
-/Users/leyang/Desktop/WebHomeWork/WebSystemProject/backend/src/main/java/com/homework/web/covid/covidApplication.java
